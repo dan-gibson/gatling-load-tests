@@ -10,7 +10,8 @@ class GeoIpDetection extends Simulation {
 
   val httpProtocol = http
     .baseURL("http://www.stage.bbc.com")
-    .inferHtmlResources(BlackList(""".*\.js""", """.*\.css""", """.*\.gif""", """.*\.jpeg""", """.*\.jpg""", """.*\.ico""", """.*\.woff""", """.*\.(t|o)tf""", """.*\.png"""), WhiteList())
+    .inferHtmlResources(BlackList(""".*\.js""", """.*\.css""", """.*\.gif""", 
+        """.*\.jpeg""", """.*\.jpg""", """.*\.ico""", """.*\.png""", """.*static.*"""), WhiteList())
     .acceptHeader("""text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8""")
     .acceptEncodingHeader("""gzip, deflate""")
     .acceptLanguageHeader("""en-gb,en;q=0.5""")
@@ -19,7 +20,7 @@ class GeoIpDetection extends Simulation {
 
     val scn = scenario("Earth")
       .exec(addCookie(Cookie("ForgeWWCVFCountryCode", "us")))
-      .exec(http("earth").get("""/"""))
+      .exec(http("earth").get("""/earth"""))
 
-    setUp(scn.inject(rampUsers(10) over(5.seconds)).protocols(httpProtocol))
+    setUp(scn.inject(atOnceUsers(3)).protocols(httpProtocol))
 }
