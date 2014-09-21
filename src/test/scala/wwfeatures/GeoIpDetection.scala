@@ -18,8 +18,8 @@ class GeoIpDetection extends Simulation {
     .userAgentHeader("""Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0""")
 
     val scn = scenario("Earth")
-      .exec(http("earth")
-      .get("""/"""))
+      .exec(addCookie(Cookie("ForgeWWCVFCountryCode", "us")))
+      .exec(http("earth").get("""/"""))
 
-    setUp(scn.inject(atOnceUsers(1)).protocols(httpProtocol))
+    setUp(scn.inject(rampUsers(10) over(5.seconds)).protocols(httpProtocol))
 }
