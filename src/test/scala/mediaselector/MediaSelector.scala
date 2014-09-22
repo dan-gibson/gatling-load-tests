@@ -21,6 +21,6 @@ class MediaSelector extends Simulation {
     ) 
 
       setUp(scn.inject(
-        rampUsersPerSec(1) to(100) during(10.minutes)
+        rampUsersPerSec(1) to(500) during(10.minutes)
         ).protocols(httpProtocol))
 }
