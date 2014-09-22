@@ -22,5 +22,7 @@ class GeoIpDetection extends Simulation {
       .exec(addCookie(Cookie("ForgeWWCVFCountryCode", "us")))
       .exec(http("earth").get("""/earth"""))
 
-    setUp(scn.inject(atOnceUsers(3)).protocols(httpProtocol))
+    setUp(scn.inject(
+      rampUsers(150) over(3.minutes), 
+      constantUsersPerSec(150) during(17.minutes)).protocols(httpProtocol))
 }
