@@ -20,7 +20,8 @@ class GeoIpDetection extends Simulation {
 
     val scn = scenario("Earth")
       .exec(addCookie(Cookie("ForgeWWCVFCountryCode", "us")))
-      .exec(http("earth").get("""/earth"""))
+      .exec(http("earth")
+      .get("""/earth""").check(status.is(200)))
 
     setUp(scn.inject(
       rampUsers(150) over(3.minutes), 
