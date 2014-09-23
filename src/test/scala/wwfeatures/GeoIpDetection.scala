@@ -24,6 +24,5 @@ class GeoIpDetection extends Simulation {
       .get("""/earth""").check(status.is(200)))
 
     setUp(scn.inject(
-      rampUsers(150) over(3.minutes), 
-      constantUsersPerSec(150) during(17.minutes)).protocols(httpProtocol))
+      constantUsersPerSec(150) during(20.minutes)).protocols(httpProtocol))
 }
