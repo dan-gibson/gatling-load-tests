@@ -18,9 +18,10 @@ class RadioPlayer extends Simulation {
     .userAgentHeader("""Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0""")
 
     val liveStreamData = csv("live-stream.csv").circular
-    val flagpoleHeaders = Map("flagpole-radio-playlister" -> "ON", "flagpole-bbcme-status" -> "GREEN", 
-                                  "flagpole-bbcme-favouriteplugin" -> "ON", "flagpole-bbcme-memodule" -> "ON", 
-                                  "flagpole-programmes-apsgateway" -> "ON")
+    val flagpoleHeaders = Map(
+                "flagpole-radio-playlister" -> "ON", "flagpole-bbcme-status" -> "GREEN", 
+                "flagpole-bbcme-favouriteplugin" -> "ON", "flagpole-bbcme-memodule" -> "ON", 
+                "flagpole-programmes-apsgateway" -> "ON")
 
     val scn = scenario("Radio Player")
       .feed(liveStreamData)
@@ -45,8 +46,23 @@ class RadioPlayer extends Simulation {
       .check(status.is(200)))
 
       .exec(http("Track Image Feed")
-      .get("trackimage/nzzgbn") 
+      .get("trackimage/nzzgbn")  // recordID
       .headers(flagpoleHeaders)
+      .check(status.is(200)))
+
+      .exec(http("More Episodes Feed")
+      .get("b04gk6kv/episodes/1") // episodePID & page
+      .headers(flagpoleHeaders)  
+      .check(status.is(200)))
+
+      .exec(http("More Like This Feed")
+      .get("b04gk6kv/morelikethis/1") // episodePID & page
+      .headers(flagpoleHeaders)  
+      .check(status.is(200)))
+      
+      .exec(http("Live Now/Next Feed")
+      .get("${stationId}") 
+      .headers(flagpoleHeaders)  
       .check(status.is(200)))
 
     setUp(scn.inject(atOnceUsers(1)).protocols(httpProtocol))
