@@ -71,5 +71,8 @@ class RadioPlayer extends Simulation {
           .check(status.is(200))))
 
 
-        setUp(scn.inject(atOnceUsers(100)).protocols(httpProtocol))
+      setUp(scn.inject(
+        rampUsersPerSec(10) to(200) during(3.minutes),
+        constantUsersPerSec(200) during(17.minutes)
+        ).protocols(httpProtocol))
 }
