@@ -70,7 +70,6 @@ class RadioPlayer extends Simulation {
           .headers(flagpoleHeaders)  
           .check(status.is(200))))
 
-
       setUp(scn.inject(
         rampUsersPerSec(10) to(200) during(3.minutes),
         constantUsersPerSec(200) during(17.minutes)
