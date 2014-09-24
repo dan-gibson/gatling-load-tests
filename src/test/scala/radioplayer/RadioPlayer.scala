@@ -61,9 +61,25 @@ class RadioPlayer extends Simulation {
       .check(status.is(200)))
       
       .exec(http("Live Now/Next Feed")
-      .get("${stationId}") 
+      .get("${stationId}/nownext") 
       .headers(flagpoleHeaders)  
       .check(status.is(200)))
+
+      .exec(http("Live Schedule Feed")
+      .get("${stationId}/schedule") 
+      .headers(flagpoleHeaders)  
+      .check(status.is(200)))
+
+      .exec(http("Favourites Feed")
+      .get("/b04gk6kv/favourites") 
+      .headers(flagpoleHeaders)  
+      .check(status.is(200)))
+
+      .exec(http("Stations Feed")
+      .get("stations") 
+      .headers(flagpoleHeaders)  
+      .check(status.is(200)))
+
 
     setUp(scn.inject(atOnceUsers(1)).protocols(httpProtocol))
 }
