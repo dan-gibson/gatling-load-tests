@@ -2,6 +2,9 @@
 
 # This is a set-up script for running Gatling on a BBC CentOS build.
 
+echo "Goto HOME"
+cd
+
 echo "installing wget"
 sudo yum install -y wget
 
