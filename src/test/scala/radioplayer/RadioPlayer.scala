@@ -2,6 +2,8 @@ package radioplayer
 
 import scala.concurrent.duration._
 
+import scala.language.postfixOps
+
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
@@ -71,7 +73,7 @@ class RadioPlayer extends Simulation {
           .check(status.is(200))))
 
       setUp(scn.inject(
-        rampUsersPerSec(10) to(200) during(3.minutes),
+        rampUsersPerSec(10) to(200) during(3 minutes),
         constantUsersPerSec(200) during(17.minutes)
         ).protocols(httpProtocol))
 }
