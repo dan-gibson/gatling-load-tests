@@ -41,7 +41,7 @@ class RadioPlayer extends Simulation {
       .check(status.is(200)))
 
       .exec(http("Pop-up Station Stream")
-      .get("/bbc_radio_two_eurovision") 
+      .get("bbc_radio_two_eurovision") 
       .headers(flagpoleHeaders)
       .check(status.is(200)))
 
@@ -71,7 +71,7 @@ class RadioPlayer extends Simulation {
       .check(status.is(200)))
 
       .exec(http("Favourites Feed")
-      .get("/b04gk6kv/favourites") 
+      .get("b04gk6kv/favourites") 
       .headers(flagpoleHeaders)  
       .check(status.is(200)))
 
