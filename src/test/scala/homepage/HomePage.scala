@@ -2,6 +2,8 @@ package homepage
 
 import scala.concurrent.duration._
 
+import scala.util.matching.Regex
+
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
@@ -17,9 +19,17 @@ class HomePage extends Simulation {
     .connection("""keep-alive""")
     .userAgentHeader("""Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0""")
 
+      
+    val locCookieData = csv("loc-cookies.csv").circular
+    def parseId(str: String) = "[0-9]{7}".r findFirstMatchIn str mkString
+
     val scn = scenario("HomePage")
+      .feed(locCookieData)
       .exec(http("homepage")
       .get("""/"""))
+
+      .exec(http("location id")
+      .get("/home/four/modules/h4weather/domestic/" + parseId("${locCookie}") + "/Trafford%2BPark/en-GB"))
 
     setUp(scn.inject(atOnceUsers(1)).protocols(httpProtocol))
 }
