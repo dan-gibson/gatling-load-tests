@@ -18,7 +18,8 @@ class SearchSuggest extends Simulation {
 
     val scn = scenario("Search Suggest")
       .feed(uniqueSuggestionsData)
-      .exec(http("Search Suggest Query").get("/search-suggest/suggest?q=${uniqueSuggestions}&mediatype=video&scope=iplayer&format=blq-1")
+      .exec(http("Search Suggest Query")
+      .get("/search-suggest/suggest?q=${uniqueSuggestions}&mediatype=video&scope=iplayer&format=blq-1")
       .check(status.is(200)))
 
       setUp(scn.inject(
