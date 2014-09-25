@@ -7,3 +7,5 @@ val test = project.in(file("."))
     .settings(libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.0.0-RC5" % "test")
     .settings(libraryDependencies += "io.gatling" % "test-framework" % "1.0-RC5" % "test")
 
+scalacOptions ++= Seq("-feature", "-language:postfixOps")
+
