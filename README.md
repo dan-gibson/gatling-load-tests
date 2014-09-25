@@ -27,5 +27,5 @@ sbt.version=0.13.6
 
 ## Contact
 
-Twitter: @AidyLewis
+Twitter: @AidyLewis  
 BBC IRC: #loadtest
