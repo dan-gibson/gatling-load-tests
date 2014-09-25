@@ -10,7 +10,7 @@ For me, the two most interesting aspects of Gatling are:
 1. Asynchronous concurrency/IO
 2. Tests as code
 
-The benefits of asynchronous concurrency/IO are that it is far more effecient than the one thread per user model that is 
+The benefits of asynchronous concurrency/IO are that it is far more efficient than the one thread per user model that is 
 prevalent in other load tools. Also, instead of using a GUI and/or XML for test scripts, Gatling uses a fairly easily 
 understandable Scala DSL. This allows us to version control our scripts and have them reviewed without having to 
 import them into a tool. We also can use the full power of the Scala language if we want to verify response bodies, 
