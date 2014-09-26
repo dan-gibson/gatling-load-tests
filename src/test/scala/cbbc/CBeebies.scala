@@ -57,6 +57,6 @@ class CBeebies extends Simulation {
             .check(status.is(200))))
 
         setUp(scn.inject(
-          rampUsersPerSec(10) to(500) during(20 minutes) randomized
+          rampUsersPerSec(10) to(900) during(30 minutes) randomized
         ).protocols(httpProtocol))
 }
