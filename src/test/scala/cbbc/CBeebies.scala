@@ -16,7 +16,7 @@ class CBeebies extends Simulation {
        .acceptLanguageHeader("""en-gb,en;q=0.5""")
        .connection("""keep-alive""")
 
-      val cbbcUrls = csv("cbbc-urls.csv").circular
+      val cbbcUrls = csv("cbbc-urls-updated-29-09-1119.csv").circular
 
       val scn = scenario("CBBC Nitro")
         .feed(cbbcUrls)
