@@ -10,7 +10,7 @@ class CBeebies extends Simulation {
 
      val httpProtocol = http
        .baseURL("http://www.stage.bbc.co.uk/cbeebies")
-       .inferHtmlResources(BlackList(""".*\.js""", """.*\.css""", """.*\.gif""", """.*\.jpeg""", """.*\.jpg""", """.*\.ico""", """.*\.woff""", """.*\.(t|o)tf""", """.*\.png"""), WhiteList())
+       .inferHtmlResources(BlackList(""".*\.js""", """.*\.css""", """.*\.gif""", """.*\.jpeg""", """.*\.jpg""", """.*\.ico""", """.*\.svg""", """.*\.png"""), WhiteList())
        .acceptHeader("""text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8""")
        .acceptEncodingHeader("""gzip, deflate""")
        .acceptLanguageHeader("""en-gb,en;q=0.5""")
@@ -57,6 +57,6 @@ class CBeebies extends Simulation {
             .check(status.is(200))))
 
         setUp(scn.inject(
-          rampUsersPerSec(10) to(900) during(30 minutes) randomized
+          rampUsersPerSec(10) to(300) during(30 minutes) 
         ).protocols(httpProtocol))
 }
