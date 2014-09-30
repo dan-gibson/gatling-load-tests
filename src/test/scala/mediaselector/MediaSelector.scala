@@ -17,10 +17,10 @@ class MediaSelector extends Simulation {
       .feed(payload)
       .exec(http("media-selector")
       .get("${selectURL}")
-      .header("X-IP-Address", "cd44794333675ecb66c49cf1302d223c89f87b9f9860703d503a603fe3880;194.159.80.39")
+      .header("X-IP-Address", "be3d985a612d34e7cb08b7eda014bef6aa74dd4d8730d51f5044a6b6dc400;194.159.80.39")
     ) 
 
       setUp(scn.inject(
-        rampUsersPerSec(1) to(500) during(10.minutes) 
+        rampUsersPerSec(10) to(900) during(20 minutes) 
       ).protocols(httpProtocol))
 }
