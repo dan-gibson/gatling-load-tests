@@ -1,4 +1,4 @@
-package radioplayer
+package bbc.radioplayer
 
 import scala.concurrent.duration._
 

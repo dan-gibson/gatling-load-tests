@@ -1,4 +1,4 @@
-package mediaselector
+package bbc.mediaselector
 
 import scala.concurrent.duration._
 
@@ -17,7 +17,8 @@ class MediaSelector extends Simulation {
       .feed(payload)
       .exec(http("media-selector")
       .get("${selectURL}")
-      .header("X-IP-Address", "be3d985a612d34e7cb08b7eda014bef6aa74dd4d8730d51f5044a6b6dc400;194.159.80.39")
+      .header("X-IP-Address", "8174fa5a37db4bfac904e4005604a4022f5ab1f26346eb5650458f402a340;194.159.80.39")
+      .check(status.is(200))
     ) 
 
       setUp(scn.inject(

@@ -1,4 +1,4 @@
-package cbbc
+package bbc.cbbc
 
 import scala.concurrent.duration._
 

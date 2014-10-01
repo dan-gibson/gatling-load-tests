@@ -1,4 +1,4 @@
-package wwfeatures
+package bbc.wwfeatures
 
 import scala.concurrent.duration._
 
