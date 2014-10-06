@@ -29,10 +29,10 @@ cd ~/.vim/bundle
 git clone https://github.com/derekwyatt/vim-scala
 
 echo "Configure Vim" 
-printf "execute pathogen#infect() syntax on \n
-        filetype plugin indent on \n
+printf "execute pathogen#infect() syntax on
+        filetype plugin indent on 
         set shortmess+=I" > ~/.vimrc 
 
-echo "alias vi=\'vim\'"
+echo "alias vi='vim'" > ~/.bashrc
 
 # Might be an idea to now reboot
