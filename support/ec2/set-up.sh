@@ -23,6 +23,16 @@ sudo sysctl -w net.ipv4.ip_local_port_range="1025 65535"
 echo 300000 | sudo tee /proc/sys/fs/nr_open
 echo 300000 | sudo tee /proc/sys/fs/file-max
 
-exit
+echo "install Vim pathogen"
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+echo "Vim scala plugin" 
+cd ~/.vim/bundle
+git clone https://github.com/derekwyatt/vim-scala
+
+echo "Configure Vim" 
+printf "execute pathogen#infect() syntax on \n
+      set shortmess+=I" > ~/.vimrc 
 
 # Might be an idea to now reboot
