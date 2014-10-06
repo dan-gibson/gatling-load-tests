@@ -30,6 +30,9 @@ git clone https://github.com/derekwyatt/vim-scala
 
 echo "Configure Vim" 
 printf "execute pathogen#infect() syntax on \n
-      set shortmess+=I" > ~/.vimrc 
+        filetype plugin indent on \n
+        set shortmess+=I" > ~/.vimrc 
+
+echo "alias vi=\'vim\'"
 
 # Might be an idea to now reboot
