@@ -27,12 +27,14 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 echo "Vim scala plugin" 
 cd ~/.vim/bundle
 git clone https://github.com/derekwyatt/vim-scala
+git clone https://github.com/kien/ctrlp.vim
 
 echo "Configure Vim" 
 printf "execute pathogen#infect() \n
 syntax on
 filetype plugin indent on \n
-set shortmess+=I" > ~/.vimrc 
+set shortmess+=I \n
+set wildignore+=*/target/*" > ~/.vimrc 
 
 echo "alias vi='vim'" > ~/.bashrc
 
