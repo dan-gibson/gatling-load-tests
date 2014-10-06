@@ -5,9 +5,6 @@
 echo "Goto HOME"
 cd
 
-echo "installing wget"
-sudo yum install -y wget
-
 echo "download SBT 0.13.6 RPM"
 wget "https://dl.bintray.com/sbt/rpm/sbt-0.13.6.rpm"
 
