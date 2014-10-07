@@ -3,13 +3,32 @@ gatling-load-tests
 
 ## Gatling
 
-[Gatling](http://gatling.io/) is a high performance load test tool based on Scala, Akka and Netty. 
+[Gatling](http://gatling.io/) is Scala based open-source load test tool, that makes a break from 
+traditional load-tools by utilising asynchronous concurrency and IO, and by using a major 
+language (Scala) as its scripting language.
 
 ## Installation
 
-Use [gatling-sbt](https://github.com/gatling/gatling-sbt). You will need version 0.13.6 of SBT to allow the
-auto-enabling of plugins. Add the below to your project/build.properties file.
+### Gatling
+Use [gatling-sbt](https://github.com/gatling/gatling-sbt). 
 
-```scala
-sbt.version=0.13.6
+```bash
+$ wget "https://dl.bintray.com/sbt/rpm/sbt-0.13.6.rpm"
+$ sudo yum install -y "sbt-0.13.6.rpm"
 ```
+
+### Test Resources
+```bash 
+$ git clone git@github.com:BBC/gatling-load-tests.git
+```
+
+## Execution
+```bash 
+$ cd gatling-load-tests
+$ sbt
+> testOnly *NewsSample*
+```
+
+
+
+
