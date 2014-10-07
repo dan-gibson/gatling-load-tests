@@ -10,7 +10,7 @@ traditional load-tools by utilising asynchronous concurrency and IO, and by usin
 language (Scala) as its scripting language.
 
 ### [SBT](http://www.scala-sbt.org/)
-SBT is a build tool that has become the de-facto build tool to for Scala projects.
+SBT is a build tool that has become the de-facto build tool for Scala projects.
 
 ## Installation 
 ### SBT
