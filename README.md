@@ -3,9 +3,9 @@ gatling-load-tests
 
 ## Introduction
 
-### Gatling
+### [Gatling](http://gatling.io/)
 
-[Gatling](http://gatling.io/) is Scala based open-source load test tool, that makes a break from 
+Gatling is Scala based open-source load test tool, that makes a break from 
 traditional load-tools by utilising asynchronous concurrency and IO, and by using a major 
 language (Scala) as its scripting language.
 
