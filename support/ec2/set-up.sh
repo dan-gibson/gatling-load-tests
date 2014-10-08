@@ -37,8 +37,9 @@ printf "execute pathogen#infect() \n
 syntax on
 filetype plugin indent on \n
 set shortmess+=I \n
-set wildignore+=*/target/* \n
-colorscheme ir_black" > ~/.vimrc 
+set wildignore+=*/target/*" > ~/.vimrc
+
+echo "colorscheme ir_black" >> ~/.vimrc 
 
 echo "alias vi='vim'" > ~/.bashrc
 
