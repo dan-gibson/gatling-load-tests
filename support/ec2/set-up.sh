@@ -37,8 +37,14 @@ printf "execute pathogen#infect() \n
 syntax on
 filetype plugin indent on \n
 set shortmess+=I \n
-set wildignore+=*/target/*" > ~/.vimrc 
+set wildignore+=*/target/* \n
+colorscheme ir_black" > ~/.vimrc 
 
 echo "alias vi='vim'" > ~/.bashrc
+
+echo "Vim color"
+mkdir ~/.vim/colors
+cd ~/.vim/colors
+wget http://blog.toddwerth.com/entry_files/8/ir_black.vim
 
 # Might be an idea to now reboot
