@@ -20,9 +20,6 @@ sudo sysctl -w net.ipv4.ip_local_port_range="1025 65535"
 echo 300000 | sudo tee /proc/sys/fs/nr_open
 echo 300000 | sudo tee /proc/sys/fs/file-max
 
-echo "install netcat"
-sudo yum install -y nc.x86_64
-
 echo "install Vim pathogen"
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
@@ -37,14 +34,11 @@ printf "execute pathogen#infect() \n
 syntax on
 filetype plugin indent on \n
 set shortmess+=I \n
-set wildignore+=*/target/* \n
-colorscheme ir_black" > ~/.vimrc 
+set wildignore+=*/target/*" > ~/.vimrc 
 
 echo "alias vi='vim'" > ~/.bashrc
 
-echo "Vim color"
-mkdir ~/.vim/colors
-cd ~/.vim/colors
-wget http://blog.toddwerth.com/entry_files/8/ir_black.vim
+echo "install netcat"
+sudo yum install -y nc.x86_64
 
 # Might be an idea to now reboot
