@@ -20,7 +20,23 @@ sudo sysctl -w net.ipv4.ip_local_port_range="1025 65535"
 echo 300000 | sudo tee /proc/sys/fs/nr_open
 echo 300000 | sudo tee /proc/sys/fs/file-max
 
-./vim.sh
+echo "install Vim pathogen"
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+echo "Vim plugins 
+cd ~/.vim/bundle
+git clone https://github.com/derekwyatt/vim-scala
+git clone https://github.com/kien/ctrlp.vim
+
+echo "Configure Vim" 
+printf "execute pathogen#infect() \n
+syntax on
+filetype plugin indent on \n
+set shortmess+=I \n
+set wildignore+=*/target/*" > ~/.vimrc 
+
+echo "alias vi='vim'" > ~/.bashrc
 
 echo "install netcat"
 sudo yum install -y nc.x86_64
