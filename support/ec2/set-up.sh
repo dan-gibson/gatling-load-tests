@@ -30,11 +30,13 @@ git clone https://github.com/derekwyatt/vim-scala
 git clone https://github.com/kien/ctrlp.vim
 
 echo "Configure Vim" 
-printf "execute pathogen#infect() \n
+cat << EOF > test-file
+execute pathogen#infect()
 syntax on
-filetype plugin indent on \n
-set shortmess+=I \n
-set wildignore+=*/target/*" > ~/.vimrc 
+filetype plugin indent on
+set shortmess+=I
+set wildignore+=*/target/*
+EOF
 
 echo "alias vi='vim'" > ~/.bashrc
 
