@@ -24,13 +24,13 @@ echo "install Vim pathogen"
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-echo "Vim plugins 
+echo "Vim plugins"
 cd ~/.vim/bundle
 git clone https://github.com/derekwyatt/vim-scala
 git clone https://github.com/kien/ctrlp.vim
 
 echo "Configure Vim" 
-cat << EOF > test-file
+cat << EOF > ~/.vimrc
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
