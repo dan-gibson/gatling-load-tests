@@ -32,7 +32,7 @@ class MusicClips extends Simulation {
     .check(status.is(200)))
 
     setUp(scn.inject(
-    rampUsersPerSec(1) to(5) during(3 minutes),
-    constantUsersPerSec(5) during(5 minutes)
+    rampUsersPerSec(1) to(5) during(1 minutes),
+    constantUsersPerSec(5) during(2 minutes)
   ).protocols(httpProtocol))
 }
