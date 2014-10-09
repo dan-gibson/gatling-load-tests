@@ -22,7 +22,7 @@ class NewsSample extends Simulation {
     val scn = scenario("News")
       .group("lots of news") {
        exec(http("news-homepage").get("""/news/""").check(status.is(200)))
-       .exec(http("news-works").get("""/news/world/""").check(status.is(200)))
+       .exec(http("news-world").get("""/news/world/""").check(status.is(200)))
     }
       
     setUp(scn.inject(atOnceUsers(10)).protocols(httpProtocol))
