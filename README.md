@@ -74,3 +74,9 @@ Use netcat to listen on port 2003
 nc -l 2003 
 ```
 
+### Results Generation from simulation.log
+Use the below command 
+``` 
+./gatling.sh -ro <ResultsFolderName>
+```
+
