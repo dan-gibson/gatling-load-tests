@@ -31,6 +31,45 @@ $ sbt
 > testOnly *NewsSample*
 ```
 
+## Real-time metrics
 
+### Install Graphite 
+```bash
+# 0.9.x (stable) branch
+git clone https://github.com/graphite-project/graphite-web.git
+cd graphite-web
+git checkout 0.9.x
+cd ..
+git clone https://github.com/graphite-project/carbon.git
+cd carbon
+git checkout 0.9.x
+cd ..
+git clone https://github.com/graphite-project/whisper.git
+cd whisper
+git checkout 0.9.x
+sudo python setup.py install
+cd ../carbon/
+sudo python setup.py install
+# configure carbon
+cd /opt/graphite/conf
+sudo cp carbon.conf.example carbon.conf
+sudo cp storage-schemas.conf.example storage-schemas.conf
 
+### Configure Gatling and Graphite
+```config
+data {
+  writers = "console, file, graphite"
+  reader = file
+
+  graphite {
+    host = "localhost"
+    port = 2003
+  }
+}
+```
+### netcat
+Use netcat to listen on port 2003 
+``` 
+nc -l 2003 
+```
 
