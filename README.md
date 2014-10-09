@@ -34,7 +34,7 @@ $ sbt
 ## Real-time metrics
 ### Install Graphite
 ```bash
-sh ./support/ec2/install-graphite.sh
+sh ./support/scripts/install-graphite.sh
 ```
 ### Configure Gatling and Graphite
 ```config
