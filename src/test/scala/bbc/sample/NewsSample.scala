@@ -20,8 +20,10 @@ class NewsSample extends Simulation {
     .userAgentHeader("""Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0""")
 
     val scn = scenario("News")
-      .exec(http("news-homepage")
-      .get("""/""")
-      .check(status.is(200)))
+      .group("lots of news") {
+       exec(http("news-homepage").get("""/news/""").check(status.is(200)))
+       .exec(http("news-homepage").get("""/news/world/""").check(status.is(200)))
+    }
+      
     setUp(scn.inject(atOnceUsers(10)).protocols(httpProtocol))
 }
