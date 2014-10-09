@@ -8,7 +8,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 
-class NewsSample extends Simulation {
+class Sample extends Simulation {
 
   val httpProtocol = http
     .baseURL("http://www.stage.bbc.co.uk")
@@ -19,11 +19,15 @@ class NewsSample extends Simulation {
     .connection("""keep-alive""")
     .userAgentHeader("""Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0""")
 
-    val scn = scenario("News")
-      .group("lots of news") {
-       exec(http("news-homepage").get("""/news/""").check(status.is(200)))
-       .exec(http("news-world").get("""/news/world/""").check(status.is(200)))
+     val scn = scenario("BBC")
+      .group("BBC Group") {
+       exec(http("sports-homepage").get("/sport/0/").check(status.is(200)))
+       .exec(http("Weather").get("/weather/").check(status.is(200)))
+       .exec(http("iPlayer").get("/iplayer").check(status.is(200)))
     }
-      
-    setUp(scn.inject(atOnceUsers(10)).protocols(httpProtocol))
+
+   setUp(scn.inject(
+        rampUsersPerSec(1) to(20) during(1 minute), 
+        constantUsersPerSec(20) during(2 minutes)
+      ).protocols(httpProtocol)) 
 }
