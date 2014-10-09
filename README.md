@@ -32,12 +32,10 @@ $ sbt
 ```
 
 ## Real-time metrics
+### Install Graphite
 ```bash
 sh ./support/ec2/install-graphite.sh
 ```
-
-### Install Graphite 
-
 ### Configure Gatling and Graphite
 ```config
 data {
@@ -54,5 +52,11 @@ data {
 Use netcat to listen on port 2003 
 ``` 
 nc -l 2003 
+```
+
+### Results Generation from simulation.log
+Use the below command 
+``` 
+./gatling.sh -ro <ResultsFolderName>
 ```
 
