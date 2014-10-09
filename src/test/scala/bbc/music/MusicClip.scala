@@ -6,7 +6,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 
-class MusicClips extends Simulation {
+class MusicClip extends Simulation {
 
 	val httpProtocol = http
 		.baseURL("http://www.stage.bbc.co.uk")
