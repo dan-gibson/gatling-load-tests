@@ -29,7 +29,7 @@ def parse_data():
 def print_data():
     count, percentile_95, epoch = parse_data()
     datetime = convert_epoch_to_datetime(epoch.group(1))
-    sys.stdout.write("datetime, RPS, 95%, \n")
+    sys.stdout.write("datetime, RPS, 95% \n")
     sys.stdout.write(datetime + ", " + count.group(1) + ", " + percentile_95.group(1) + "\n\n")
 
 while True:
