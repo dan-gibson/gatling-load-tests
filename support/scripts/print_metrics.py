@@ -3,25 +3,30 @@
 import sys
 import re
 
-def parse_data(data):
-    count, minimum, maximum = re.search(r"allRequests.all.count (\d+)", data), \
-        re.search(r"allRequests.all.min (\d+)", data), re.search(r"allRequests.all.max (\d+)", data)
-    return count, minimum, maximum
+def parse_data():
+    store_count, store_percentile_95 = "", ""
 
-def print_data(data):
-    count, minimum, maximum = parse_data(data)
-    if count: 
-      sys.stdout.write("RPS: " + count.group(1) + "\n")
-    if minimum:
-      sys.stdout.write("Min: " + minimum.group(1) + "\n")
-    if maximum:
-      sys.stdout.write("Max: " + maximum.group(1) + "\n\n")
+    while True:
+        input = sys.stdin.readline()
+        count, percentile_95 = re.search(r"allRequests.all.count (\d+)", input), \
+          re.search(r"allRequests.all.percentiles95 (\d+)", input)
+        if count:
+          store_count = count 
+        if percentile_95: 
+          store_percentile_95 = percentile_95 
+
+        if store_count and store_percentile_95:
+            break
+    return store_count, store_percentile_95
+
+def print_data():
+    count, percentile_95 = parse_data()
+    sys.stdout.write("RPS, 95% \n")
+    sys.stdout.write(count.group(1) + ", " + percentile_95.group(1) + "\n\n")
 
 while True:
     try:
-        input = sys.stdin.readline()
-        if input:
-            print_data(input)
+        print_data()
     except KeyboardInterrupt:
          sys.exit()
 
