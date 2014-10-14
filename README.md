@@ -49,7 +49,7 @@ data {
 }
 ```
 ### netcat
-Use netcat to listen on port 2003 
+Use netcat to listen on port 2003 which can be piped into the print_metrics.py (support/scripts) to parse the Graphite results.
 ``` 
-nc -l 2003 
+nc -l 2003 | python print_metrics.py
 
