@@ -57,6 +57,7 @@ class BrandshelfPromo extends Simulation {
             .check(status.is(200))))
 
         setUp(scn.inject(
-          rampUsersPerSec(1) to(10) during(5 seconds) randomized
+          rampUsersPerSec(1) to(100) during(10 minutes) randomized,
+          constantUsersPerSec(100) during(10 minutes) randomized
         ).protocols(httpProtocol))
 }
