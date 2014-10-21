@@ -23,11 +23,11 @@ class HomePage extends Simulation {
     val scn = scenario("HomePage")
       .feed(locCookieData)
       .exec(http("homepage")
-      .get("""/"""))
-      .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0") 
+      .get("""/""")
+      .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0"))
 
       .exec(http("location id")
-      .get("/home/four/modules/h4weather/domestic/" + parseId("${locCookie}") + "/Trafford%2BPark/en-GB"))
+      .get("/home/four/modules/h4weather/domestic/"))
 
     setUp(scn.inject(atOnceUsers(1)).protocols(httpProtocol))
 }
