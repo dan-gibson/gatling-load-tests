@@ -26,12 +26,17 @@ def parse_data():
             break
     return store_count, store_percentile_95, store_epoch
 
+counter = 0
 def print_data():
+    global counter
+    counter += 1
     count, percentile_95, epoch = parse_data()
-    datetime = convert_epoch_to_datetime(epoch.group(1))
-    header = "datetime".ljust(19) + "  RPS  95% \n" 
-    sys.stdout.write(header)
-    sys.stdout.write(datetime + ", " + count.group(1) + ",  " + percentile_95.group(1) + "\n\n")
+    # add sensible stdout intervals
+    if count and counter % 3 == 0:
+        datetime = convert_epoch_to_datetime(epoch.group(1))
+        header = "datetime".ljust(19) + "  RPS  95% \n" 
+        sys.stdout.write(header)
+        sys.stdout.write(datetime + ", " + count.group(1) + ",  " + percentile_95.group(1) + "\n\n")
 
 while True:
     try:
