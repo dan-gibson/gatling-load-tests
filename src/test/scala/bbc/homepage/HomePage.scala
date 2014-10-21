@@ -40,7 +40,6 @@ class HomePage extends Simulation {
             http("wales-weather").get("""/home/four/modules/h4weather/wales/${locationId}/Trafford%2BPark/en-GB"""),
             http("wales-json").get("""/home/four/modules/h4discoveryzone/1/wales/default/default/${newsRegionId}/en-GB.json"""))) 
 
-
         .exec(http("Scotland").get("""/scotland/""").check(status.is(200))
         .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")
         .resources(
