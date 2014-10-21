@@ -17,16 +17,14 @@ class HomePage extends Simulation {
     .acceptEncodingHeader("""gzip, deflate""")
     .acceptLanguageHeader("""en-gb,en;q=0.5""")
     .connection("""keep-alive""")
-    .userAgentHeader("""Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0""")
-
       
     val locCookieData = csv("loc-cookies.csv").circular
-    def parseId(str: String) = "[0-9]{7}".r findFirstMatchIn str mkString
 
     val scn = scenario("HomePage")
       .feed(locCookieData)
       .exec(http("homepage")
       .get("""/"""))
+      .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0") 
 
       .exec(http("location id")
       .get("/home/four/modules/h4weather/domestic/" + parseId("${locCookie}") + "/Trafford%2BPark/en-GB"))
