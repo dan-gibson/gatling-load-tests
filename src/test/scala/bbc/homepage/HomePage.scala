@@ -28,14 +28,43 @@ class HomePage extends Simulation {
         .feed(newsRegionId)
         .exec(addCookie(Cookie("locserv", "${locCookie}")))
 
-        .exec(http("Domestic").get("""/""")
+        .exec(http("Domestic").get("""/""").check(status.is(200))
         .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")
         .resources(
-          http("weather").get("""/home/four/modules/h4weather/domestic/${locationId}/Trafford%2BPark/en-GB"""),
-          http("json").get("""/home/four/modules/h4discoveryzone/1/domestic/default/default/${newsRegionId}/en-GB.json"""))) 
+            http("domestic-weather").get("""/home/four/modules/h4weather/domestic/${locationId}/Trafford%2BPark/en-GB"""),
+            http("domestic-json").get("""/home/four/modules/h4discoveryzone/1/domestic/default/default/${newsRegionId}/en-GB.json"""))) 
+
+        .exec(http("Wales").get("""/wales/""").check(status.is(200))
+        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")
+        .resources(
+            http("wales-weather").get("""/home/four/modules/h4weather/wales/${locationId}/Trafford%2BPark/en-GB"""),
+            http("wales-json").get("""/home/four/modules/h4discoveryzone/1/wales/default/default/${newsRegionId}/en-GB.json"""))) 
 
 
+        .exec(http("Scotland").get("""/scotland/""").check(status.is(200))
+        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")
+        .resources(
+            http("scotland-weather").get("""/home/four/modules/h4weather/scotland/${locationId}/Trafford%2BPark/en-GB"""),
+            http("scotland-json").get("""/home/four/modules/h4discoveryzone/1/scotland/default/default/${newsRegionId}/en-GB.json"""))) 
 
+        .exec(http("northernireland").get("""/northernireland/""").check(status.is(200))
+        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")
+        .resources(
+            http("ni-weather").get("""/home/four/modules/h4weather/northernireland/${locationId}/Trafford%2BPark/en-GB"""),
+            http("ni-json").get("""/home/four/modules/h4discoveryzone/1/northernireland/default/default/${newsRegionId}/en-GB.json"""))) 
+
+        .exec(http("cymru").get("""/cymru/""").check(status.is(200))
+        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")
+        .resources(
+            http("cymru-weather").get("""/home/four/modules/h4weather/cymru/${locationId}/Trafford%2BPark/en-GB"""),
+            http("cymru-json").get("""/home/four/modules/h4discoveryzone/1/cymru/default/default/${newsRegionId}/en-GB.json"""))) 
+
+        .exec(http("alba").get("""/alba/""").check(status.is(200))
+        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")
+        .resources(
+            http("alba-weather").get("""/home/four/modules/h4weather/alba/${locationId}/Trafford%2BPark/en-GB"""),
+            http("alba-json").get("""/home/four/modules/h4discoveryzone/1/alba/default/default/${newsRegionId}/en-GB.json"""))) 
+      
       setUp(
         scn.inject(constantUsersPerSec(10) during(10 seconds)
       ).protocols(httpProtocol))
