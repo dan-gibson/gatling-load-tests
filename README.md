@@ -31,7 +31,7 @@ $ sbt
 > testOnly *SampleTest*
 ```
 
-## Real-time metrics
+## Real-time metrics (Optional)
 ### Install Graphite
 There is an install graphite bash script in support/scripts
 ```bash
