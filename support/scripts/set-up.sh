@@ -43,4 +43,12 @@ echo "alias vi='vim'" > ~/.bashrc
 echo "install netcat"
 sudo yum install -y nc.x86_64
 
+echo "Configure git"
+git config --global alias.st status
+git config --global color.ui true
+
+echo "Some Bash"
+echo alias ..=\"cd ..\" >> ~/.bashrc
+
+exit 0
 # Might be an idea to now reboot
