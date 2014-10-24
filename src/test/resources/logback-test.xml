@@ -2,7 +2,7 @@
 <configuration>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-      <file>../gatling.log</file>
+      <file>gatling.log</file>
         <append>true</append>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{15} - %msg%n%rEx</pattern>
