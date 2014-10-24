@@ -19,36 +19,38 @@ class HomePage extends Simulation {
       .connection("""keep-alive""")
       
     val locCookie = csv("homepage/loc-cookies.csv").circular
-    val locationId = csv("homepage/location-id.csv").circular
-    val newsRegionId = csv("homepage/news-region-id.csv").circular
 
     val scn = scenario("Homepage")
         .feed(locCookie)
-        .feed(locationId)
-        .feed(newsRegionId)
         .exec(addCookie(Cookie("locserv", "${locCookie}")))
 
-        .exec(http("Domestic").get("""/""").check(status.is(200))
-        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0"))
+        .randomSwitch(
+            89.5d -> exec(http("Domestic").get("""/""").check(status.is(200))
+            .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")),
 
-        .exec(http("Wales").get("""/wales/""").check(status.is(200))
-        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0"))
+            0.1d -> exec(http("Wales").get("""/wales/""").check(status.is(200))
+            .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")),
 
-        .exec(http("Scotland").get("""/scotland/""").check(status.is(200))
-        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0"))
+            0.1d -> exec(http("Scotland").get("""/scotland/""").check(status.is(200))
+            .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")),
 
-        .exec(http("northernireland").get("""/northernireland/""").check(status.is(200))
-        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0"))
+            0.1d -> exec(http("northernireland").get("""/northernireland/""").check(status.is(200))
+            .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")),
 
-        .exec(http("cymru").get("""/cymru/""").check(status.is(200))
-        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0"))
+            0.1d -> exec(http("cymru").get("""/cymru/""").check(status.is(200))
+            .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")), 
 
-        .exec(http("alba").get("""/alba/""").check(status.is(200))
-        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0"))
-      
-      setUp(
-        scn.inject(constantUsersPerSec(10) during(1 minute)
-      ).protocols(httpProtocol))
+            0.1d -> exec(http("alba").get("""/alba/""").check(status.is(200))
+            .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:31.0) Gecko/20100101 Firefox/31.0")),
+
+            10d -> exec(http("Mobile").get("""/""").check(status.is(200))
+            .header("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3"))
+        )
+       
+        setUp(scn.inject(
+          rampUsersPerSec(10) to(300) during(3 minutes),
+          constantUsersPerSec(300) during(17 minutes)
+        ).protocols(httpProtocol))
 }
 
 
