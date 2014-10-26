@@ -19,6 +19,7 @@ class AXS extends Simulation {
         .feed(versionPid)
         .exec(http("AXS")
         .get("?media_set=${mediaSet}&version_pid=${versionPid}&format=base64")
+        .header("X-Ip_is_uk_combined", "yes")
         .check(status.is(200))
     ) 
 
