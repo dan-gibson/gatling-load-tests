@@ -17,7 +17,6 @@ class MediaSelector extends Simulation {
       .feed(payload)
       .exec(http("media-selector")
       .get("${selectURL}")
-      .header("X-IP-Address", "8174fa5a37db4bfac904e4005604a4022f5ab1f26346eb5650458f402a340;194.159.80.39")
       .check(status.is(200))
     ) 
 
